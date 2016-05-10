@@ -7,5 +7,5 @@ class MongoModel
     db.collection(collection).insert message, (error, data) =>
       callback(error, data)
       db.close()
-s
+
 module.exports = MongoModel
