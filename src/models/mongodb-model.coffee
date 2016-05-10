@@ -5,7 +5,7 @@ class MongoModel
     {connectionString, collection, options} = device
     db = mongojs connectionString, [collection], options
     db.collection(collection).insert message, (error, data) =>
-      db.close()
       callback(error, data)
-
+      db.close()
+s
 module.exports = MongoModel

@@ -8,6 +8,9 @@ CREATE_DEVICE_URL="$SERVICE_URL/messages"
 
 mkdir ./tmp
 
+export DEBUG="*"
+export NODE_DEBUG="request"
+
 echo "creating owner device"
 meshblu-util register -s $MESHBLU_URL > ./tmp/owner-meshblu.json
 OWNER_DEVICE_UUID=$(cat ./tmp/owner-meshblu.json | jq -r '.uuid')
@@ -31,6 +34,7 @@ FORWARDER_DEVICE_UUID=$(cat ./tmp/data-forwarder-config.json | jq -r '.uuid')
 FORWARDER_DEVICE_TOKEN=$(cat ./tmp/data-forwarder-config.json | jq -r '.token')
 
 echo "data-forwarder device is: $FORWARDER_DEVICE_UUID"
+
 #Hey, you think meshblu-util register should return a meshblu.json?
 echo "{ \
 \"server\": \"$MESHBLU_SERVER\", \
@@ -43,6 +47,6 @@ echo "subscribing data-forwarder to receiver-device's received messages"
 meshblu-util subscription-create -e $RECEIVER_DEVICE_UUID -t message.received ./tmp/data-forwarder-meshblu.json
 
 echo "messaging receiver-device as the owner"
-meshblu-util message \
+env DEBUG='*' meshblu-util message \
 -d "{\"devices\": [\"$RECEIVER_DEVICE_UUID\"], \"data-forwarders\": \"are-awesome\"}" \
 ./tmp/owner-meshblu.json

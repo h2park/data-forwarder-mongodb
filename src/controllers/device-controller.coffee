@@ -24,6 +24,7 @@ class DeviceController
       subscription = {subscriberUuid: uuid, emitterUuid: uuid, type: 'message.received'}
       meshbluAuth.uuid = device.uuid
       meshbluAuth.token = device.token
+
       meshbluHttp = new MeshbluHttp meshbluAuth
       meshbluHttp.createSubscription subscription, (error) =>
         return res.sendError error if error?
