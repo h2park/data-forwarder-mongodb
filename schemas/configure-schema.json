@@ -1,0 +1,26 @@
+{
+  "title": "Configure",
+  "type": "object",
+  "properties": {
+    "connectionString": {
+      "type": "string"
+    },
+    "collection": {
+      "type": "string"
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "ssl": {
+          "type": "boolean"
+        },
+        "connectTimeoutMS": {
+          "type": "integer"
+        },
+        "socketTimeoutMS": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
