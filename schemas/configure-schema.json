@@ -5,26 +5,29 @@
     "name": {
       "type": "string"
     },
-    "connectionString": {
-      "type": "string"
-    },
-    "collection": {
-      "type": "string"
-    },
-    "options": {
+    "forwarderConfig": {
       "type": "object",
-      "properties": {
-        "ssl": {
-          "type": "boolean"
-        },
-        "connectTimeoutMS": {
-          "type": "integer"
-        },
-        "socketTimeoutMS": {
-          "type": "integer"
+      "connectionString": {
+        "type": "string"
+      },
+      "collection": {
+        "type": "string"
+      },
+      "options": {
+        "type": "object",
+        "properties": {
+          "ssl": {
+            "type": "boolean"
+          },
+          "connectTimeoutMS": {
+            "type": "integer"
+          },
+          "socketTimeoutMS": {
+            "type": "integer"
+          }
         }
-      }
+      },
+      "required": ["connectionString", "collection"]
     }
-  },
-  "required": ["connectionString", "collection"]
+  }
 }

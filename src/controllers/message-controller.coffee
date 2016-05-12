@@ -1,7 +1,7 @@
 debug       = require('debug')('data-forwarder:data-forwarder-mongodb')
 _           = require 'lodash'
 MeshbluHttp = require 'meshblu-http'
-MongoModel  = require '../models/mongodb-model'
+Mongodb  = require '../models/mongodb-model'
 
 class MessageController
 
@@ -10,8 +10,10 @@ class MessageController
     meshblu = new MeshbluHttp req.meshbluAuth
     @getDeviceConfig meshblu, (error, device) =>
       return res.sendError(error) if error?
-      mongoModel = new MongoModel
-      mongoModel.onMessage {message, device}, (error) =>
+      {forwarderConfig} = device
+      return res.sendStatus 422 unless forwarderConfig?
+      mongodb = new Mongodb
+      mongodb.onMessage {message, forwarderConfig}, (error) =>
         return res.sendError error if error?
         res.sendStatus 201
 

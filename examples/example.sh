@@ -27,7 +27,7 @@ curl \
 --silent \
 --user $OWNER_DEVICE_UUID:$OWNER_DEVICE_TOKEN \
 -H 'content-type: application/json' \
--d '{"connectionString": "skynet", "collection": "whatever"}' \
+-d '{"forwarderConfig": {"connectionString": "skynet", "collection": "whatever"}}' \
 -X POST "$SERVICE_URL/devices" | jq '.' > ./tmp/data-forwarder-config.json
 
 FORWARDER_DEVICE_UUID=$(cat ./tmp/data-forwarder-config.json | jq -r '.uuid')

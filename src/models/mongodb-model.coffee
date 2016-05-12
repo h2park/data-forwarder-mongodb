@@ -1,8 +1,8 @@
 mongojs = require 'mongojs'
 
 class MongoModel
-  onMessage: ({message, device}, callback) =>
-    {connectionString, collection, options} = device
+  onMessage: ({message, forwarderConfig}, callback) =>
+    {connectionString, collection, options} = forwarderConfig
     db = mongojs connectionString, [collection], options
     db.collection(collection).insert message, (error, data) =>
       callback(error, data)
