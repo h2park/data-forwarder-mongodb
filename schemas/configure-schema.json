@@ -3,27 +3,34 @@
   "type": "object",
   "properties": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "title": "Name"
     },
     "forwarderConfig": {
       "type": "object",
-      "connectionString": {
-        "type": "string"
-      },
-      "collection": {
-        "type": "string"
-      },
-      "options": {
-        "type": "object",
-        "properties": {
-          "ssl": {
-            "type": "boolean"
-          },
-          "connectTimeoutMS": {
-            "type": "integer"
-          },
-          "socketTimeoutMS": {
-            "type": "integer"
+      "properties": {
+        "connectionString": {
+          "type": "string",
+          "title": "Connection String"
+        },
+        "collection": {
+          "type": "string",
+          "title": "Collection"
+        },
+        "options": {
+          "type": "object",
+          "title": "Connection Configuration",
+          "properties": {
+            "ssl": {
+              "type": "boolean",
+              "title": "SSL"
+            },
+            "connectTimeoutMS": {
+              "type": "integer"
+            },
+            "socketTimeoutMS": {
+              "type": "integer"
+            }
           }
         }
       },
