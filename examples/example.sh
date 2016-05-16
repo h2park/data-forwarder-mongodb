@@ -1,24 +1,18 @@
 #!/usr/bin/env bash
 
-MESHBLU_SERVER="meshblu.octoblu.dev"
-MESHBLU_PORT="80"
-MESHBLU_URL="$MESHBLU_SERVER:$MESHBLU_PORT"
-SERVICE_URL="data-forwarder-mongodb.octoblu.dev"
+SERVICE_URL="data-forwarder-mongodb.octoblu.com"
 CREATE_DEVICE_URL="$SERVICE_URL/messages"
 
 mkdir ./tmp
 
-export DEBUG="*"
-export NODE_DEBUG="request"
-
 echo "creating owner device"
-meshblu-util register -s $MESHBLU_URL > ./tmp/owner-meshblu.json
+meshblu-util register > ./tmp/owner-meshblu.json
 OWNER_DEVICE_UUID=$(cat ./tmp/owner-meshblu.json | jq -r '.uuid')
 OWNER_DEVICE_TOKEN=$(cat ./tmp/owner-meshblu.json | jq -r '.token')
 echo "owner is: $OWNER_DEVICE_UUID"
 
 echo "creating receiver device"
-meshblu-util register -o -s $MESHBLU_URL > ./tmp/receiver-meshblu.json
+meshblu-util register -o > ./tmp/receiver-meshblu.json
 RECEIVER_DEVICE_UUID=$(cat ./tmp/receiver-meshblu.json | jq -r '.uuid')
 echo "receiver is: $RECEIVER_DEVICE_UUID"
 
