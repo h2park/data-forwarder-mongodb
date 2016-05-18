@@ -25,25 +25,25 @@ module.exports = ({authorizedUuid, deviceType, imageUrl, serviceUrl, name, confi
             method: 'POST'
             generateAndForwardMeshbluCredentials: true
           }]
-          
-    whitelists:
-      broadcast:
-        as:       [{uuid: authorizedUuid}]
-        received: [{uuid: authorizedUuid}]
-        sent:     [{uuid: authorizedUuid}]
-      configure:
-        as:       [{uuid: authorizedUuid}]
-        received: [{uuid: authorizedUuid}]
-        sent:     [{uuid: authorizedUuid}]
-        update:   [{uuid: authorizedUuid}]
-      discover:
-        view:     [{uuid: authorizedUuid}]
-        as:       [{uuid: authorizedUuid}]
-      message:
-        as:       [{uuid: authorizedUuid}]
-        received: [{uuid: authorizedUuid}]
-        sent:     [{uuid: authorizedUuid}]
-        from:     [{uuid: authorizedUuid}]
+
+      whitelists:
+        broadcast:
+          as:       [{uuid: authorizedUuid}]
+          received: [{uuid: authorizedUuid}]
+          sent:     [{uuid: authorizedUuid}]
+        configure:
+          as:       [{uuid: authorizedUuid}]
+          received: [{uuid: authorizedUuid}]
+          sent:     [{uuid: authorizedUuid}]
+          update:   [{uuid: authorizedUuid}]
+        discover:
+          view:     [{uuid: authorizedUuid}]
+          as:       [{uuid: authorizedUuid}]
+        message:
+          as:       [{uuid: authorizedUuid}]
+          received: [{uuid: authorizedUuid}]
+          sent:     [{uuid: authorizedUuid}]
+          from:     [{uuid: authorizedUuid}]
 
     schemas:
       version: '1.0.0'
