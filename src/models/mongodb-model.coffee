@@ -8,14 +8,10 @@ class MongoModel
     {connectionString, collection, options} = forwarderConfig
 
     db = mongojs connectionString, [collection], options
-    
-    db.on 'error', (error) =>
-      db.close()
-      callback(error)
+    db.on 'error', (error) => db.close()
+    db.collection(collection).insert message, (error, data) => db.close()
 
-    db.collection(collection).insert message, (error, data) =>
-      db.close()
-      callback(error, data)
+    callback()
 
 
 module.exports = MongoModel
