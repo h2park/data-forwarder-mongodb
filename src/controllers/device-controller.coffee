@@ -16,7 +16,7 @@ class DeviceController
     authorizedUuid  = meshbluAuth.uuid
 
     deviceConfig    = generateConfig {@deviceType, @imageUrl, @serviceUrl, authorizedUuid, config}
-    meshbluHttp     = new MeshbluHttp meshbluAuth
+    meshbluHttp     = new MeshbluHttp _.merge({keepAlive: false}, meshbluAuth)
 
     meshbluHttp.register deviceConfig, (error, device) =>
       return res.sendError error if error?
@@ -27,7 +27,7 @@ class DeviceController
 
       meshbluAuth.uuid  = device.uuid
       meshbluAuth.token = device.token
-      meshbluHttp       = new MeshbluHttp meshbluAuth
+      meshbluHttp       = new MeshbluHttp _.merge({keepAlive: false}, meshbluAuth)
 
       meshbluHttp.createSubscription messageReceived, (error) =>
         return res.sendError error if error?

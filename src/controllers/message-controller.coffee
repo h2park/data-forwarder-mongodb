@@ -7,7 +7,7 @@ class MessageController
 
   message: (req, res) =>
     message = req.body
-    meshblu = new MeshbluHttp req.meshbluAuth
+    meshblu = new MeshbluHttp _.merge({keepAlive: false}, req.meshbluAuth)
     @getDeviceConfig meshblu, (error, device) =>
       return res.sendError(error) if error?
       {forwarderConfig} = device
